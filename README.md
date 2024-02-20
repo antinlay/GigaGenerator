@@ -1,0 +1,2 @@
+# GigaGenerator
+Тестирование APIGenerator Swift
