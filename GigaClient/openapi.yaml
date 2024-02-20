@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: GIGACHAT API
+  version: 1.0.0
+servers:
+  - url: https://gigachat.devices.sberbank.ru/api/v1
+    description: The GIGACHAT REST API
+paths:
+  /chat/completions:
+    post:
+      operationId: createChatCompletion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateChatCompletionRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateChatCompletionResponse"
+          description: OK
+      summary: Creates a completion for the chat message
+      tags:
+        - OpenAI
+      x-oaiMeta:
+        beta: true
+  /files/{fileId}/content:
+    get:
+      operationId: getFileContent
+      parameters:
+        - name: fileId
+          in: path
+          description: ID of the file
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+      summary: Get the content of a file
+      tags:
+        - File
+        - Image
+      x-oaiMeta:
+        beta: true
+components:
+  schemas:
+    CreateChatCompletionRequest:
+      type: object
+      properties:
+        model:
+          type: string
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+              content:
+                type: string
+        temperature:
+          type: number
+        top_p:
+          type: number
+        n:
+          type: number
+        stream:
+          type: boolean
+        max_tokens:
+          type: number
+        repetition_penalty:
+          type: number
+        update_interval:
+          type: number
+    CreateChatCompletionResponse:
+      type: object
+      properties:
+        choices:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: object
+                properties:
+                  content:
+                    type: string
+                  role:
+                    type: string
+              index:
+                type: integer
+              finish_reason:
+                type: string
+        created:
+          type: integer
+        model:
+          type: string
+        object:
+          type: string
+        usage:
+          type: object
+          properties:
+            prompt_tokens:
+              type: integer
+            completion_tokens:
+              type: integer
+            total_tokens:
+              type: integer
+            system_tokens:
+              type: integer
