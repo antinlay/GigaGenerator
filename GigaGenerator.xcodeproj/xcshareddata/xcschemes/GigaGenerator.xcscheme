@@ -75,8 +75,18 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "GIGA_API_KEY"
+            key = "BearerKey"
             value = "eyJjdHkiOiJqd3QiLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.NAdi7nm7HU2sI9-z0vexEz7DTep_afiYpFnfCV_kNIegEqh8FQ-bV5G5u6iLyyRH4RYHBQFfyJOlDzNIPTDBfzDMS2DFRALbxOyE6d-bNRiUR5t4Lq66eAvAVTM6DETZXy0fGWkE4P7an6t2CDj20zsHWK4ADSbFzg13LGBnGpYj5_AEopj001genZcyyQuoGfKraIzULsr6y64yJSnOGDAXwFIPpP3RRDUk4lNFY6QezGFdB-PnTUKPI-SITQfawfqF_DmP96C1_dYX-gMMj46rcKcPyDw_EgZLMAJWBwRJy3zp390nPkd_6EArAzdZsrgruDZbD1opQ1LWOagMDA.4-p1b0dHoplfuhgT6J8jjQ.Iso6Q9HsblqlxEjzAYst0uykltxy-mYgPCpgjpVTgVt1djZGh_zsbXSM3HZ9F4yYYyNueas9Y-cjqQBsjFN52ovx15Aa2KORMTRYqIXxb0PePqAEUTrPdl-KKLDwg6t0QsFsZe8ADlC57i7x0mgg9r5wiaHIArtBT9CVmhaVMKqfzhZZAMY-tpVfRPLRvHfm0MPdf_cb-5yn5OQDf2-HRS3giHSPI-JdWddPa67lcTR67jtYErF5PiHPUhCvRzENomBOQ3w4eFk2G2F86aDWGoAzbvqPLxjZj26cLQ9PXccZz6ZVN090p322Coq-6ail4Z33M3Li7txvH43m9P0ORRpQzs4VDYCuOLlrG-TBrFmfmk9U7nj31MwSsZFQoSPrKBfLrmzaANfSfwYf2FssIUDPr9iBBMHrZKs60SSHGH_KRSvcPVGXYxHWTwcpfaZ-ByAm0_rGMPmRhnFoOm9RBCm8Twe9I4ZWPKeU0BGa5NLmWhW4IZXLU0y68C5ZYTHPEQ0U751oh-O93v7RRAVZQSCRwl3SvwYfHfrIw7Pi0nIem3_Ss9sCekll-i3EU5xvL_S5zMdKzCv3UV6unkXw6tLtm8xSF11LjCSZ2zWk4zFxL80c7BrM2Dj9ULLscvffVkF1FGojJg__aRKUb_O5Chd_LGkHIc9E4ZbDT8JEoW2d4NDTHrzvahF6OpPWmkjcdhMFQ1k8Rkd-YFg2NnQEA5V2-89SqOfAYTPPnMuNR7s.nO09O8fF20YH_7XYkQo-8RX4lSCs-V5A7x7m8UiCLPw"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "RqUID"
+            value = "85489cfb-63fd-4961-94b3-eb8cabe86b5a"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BasicKey"
+            value = "N2Y2ODJkNmMtOGZlMC00MmM2LTliYzQtMzk0NDFiYzEzOTZiOjg1NDg5Y2ZiLTYzZmQtNDk2MS05NGIzLWViOGNhYmU4NmI1YQ=="
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

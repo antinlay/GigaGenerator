@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-  @Bindable var vm = GigaModel(apiKey: ProcessInfo.processInfo.environment["GIGA_API_KEY"] ?? "")
+  @Bindable var gigaModel = GigaModel(apiKey: ProcessInfo.processInfo.environment["BearerKey"] ?? "")
   
   var body: some View {
     VStack(spacing: 16) {
-      switch vm.fetchPhase {
+      switch gigaModel.fetchPhase {
       case .loading: ProgressView("Requesting to AI")
       case .success(let image):
         image.resizable().scaledToFit()
@@ -20,18 +20,15 @@ struct ContentView: View {
         Text(error).foregroundStyle(Color.red)
       default: EmptyView()
       }
-      
-      TextField("Enter prompt", text: $vm.prompt, prompt: Text("Enter prompt"), axis: .vertical)
-        .autocorrectionDisabled()
+      TextField("Enter prompt", text: $gigaModel.prompt, prompt: Text("введите промт"), axis: .vertical)
         .textFieldStyle(.roundedBorder)
-        .disabled(vm.fetchPhase == .loading)
+        .disabled(gigaModel.fetchPhase == .loading)
       
-      Button("Generate Image") {
-        Task { await vm.generateImage() }
+      Button("Сгенерировать изображение") {
+        Task { await gigaModel.generateImage() }
       }
       .buttonStyle(.borderedProminent)
-      .disabled(vm.fetchPhase == .loading || vm.prompt.isEmpty)
-      
+      .disabled(gigaModel.fetchPhase == .loading || gigaModel.prompt.isEmpty)      
     }
     .padding()
     .navigationTitle("XCA AIText2Image")

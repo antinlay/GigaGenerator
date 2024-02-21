@@ -12,9 +12,9 @@ import SwiftUI
 @Observable
 class GigaModel {
   
-  let client: GigaClient
+  var client: GigaClient
   
-  var prompt = ""
+  var prompt: String = ""
   var fetchPhase = FetchPhase.initial
   
   init(apiKey: String) {
@@ -24,11 +24,17 @@ class GigaModel {
   @MainActor
   func generateImage() async {
     self.fetchPhase = .loading
+//    let expiresAt: TimeInterval = 1708499130720
+    //     Повторное выполнение функции после истечения времени expiresAt
+//    DispatchQueue.global().asyncAfter(deadline: .now() + expiresAt) {
+//      _Concurrency.Task {
+        await client.makeOAuthRequest()
+        self.client = .init(apiKey: ProcessInfo.processInfo.environment["BearerKey"] ?? "")
+//      }
+//    }
     do {
-      let fileId = try await client.generateImageId(prompt: prompt)
+      let fileId = try await client.generateImageId(prompt: "Сгенерируй изображение \(prompt)")
       
-//      let data = client.getFileContent(path: .init(fileId: id), headers: .init(accept: .init(arrayLiteral: .init(contentType: .jpeg))))
-//      let (data, _) = try await URLSession.shared.data(from: URL(string: fileId)!)
       guard let image = try await client.getFileContent(fileId: fileId) else {
         self.fetchPhase = .failure("failed to download image")
         return
@@ -38,7 +44,7 @@ class GigaModel {
       self.fetchPhase = .failure(error.localizedDescription)
     }
   }
-}
+  }
 
 
 enum FetchPhase: Equatable {
