@@ -36,7 +36,7 @@ public struct GigaClient {
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
     request.setValue("application/json", forHTTPHeaderField: "Accept")
-    request.setValue("Bearer \(getEnvironmentVariable("BearerKey")!)", forHTTPHeaderField: "Authorization")
+    request.setValue("Bearer \(getEnvironmentVariable("BearerKey"))", forHTTPHeaderField: "Authorization")
     
     do {
       let (data, _) = try await URLSession.shared.data(for: request)
@@ -77,25 +77,24 @@ extension GigaClient {
     setenv(key, value, 1) // 1 means override existing value
   }
   
-  private func getEnvironmentVariable(_ key: String) -> String? {
+  private func getEnvironmentVariable(_ key: String) -> String {
     guard let value = getenv(key) else {
-      return nil
+      return ""
     }
     return String(cString: value)
   }
   
   public func makeOAuthRequest() async {
     let url = URL(string: "https://ngw.devices.sberbank.ru:9443/api/v2/oauth")!
-    let scope = "GIGACHAT_API_PERS"
     
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
     request.setValue("application/json", forHTTPHeaderField: "Accept")
     request.setValue(getEnvironmentVariable("RqUID"), forHTTPHeaderField: "RqUID")
-    request.setValue("Basic \(getEnvironmentVariable("BasicKey") ?? "")", forHTTPHeaderField: "Authorization")
+    request.setValue("Basic \(getEnvironmentVariable("BasicKey"))", forHTTPHeaderField: "Authorization")
     
-    let postData = "scope=\(scope)".data(using: .utf8)
+    let postData = "scope=\(getEnvironmentVariable("GigaScope"))".data(using: .utf8)
     request.httpBody = postData
     
     do {
